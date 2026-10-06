@@ -7,12 +7,58 @@ const whatsappNumber='244900000000';
 const wa=document.getElementById('wa');
 wa.href=`https://wa.me/${whatsappNumber}`;
 
-document.getElementById('bookingForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const name=document.getElementById('name').value.trim();
-  const child=document.getElementById('child').value.trim();
-  const age=document.getElementById('age').value.trim();
-  const msg=document.getElementById('message').value.trim();
-  const text=`Olá! Gostaria de agendar uma visita ao Cantinho da Lwinnie.%0A%0ANome: ${encodeURIComponent(name)}%0ACriança: ${encodeURIComponent(child)}%0AIdade: ${encodeURIComponent(age)}%0ADia/horário: ${encodeURIComponent(msg)}`;
-  window.open(`https://wa.me/${whatsappNumber}?text=${text}`,'_blank');
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("bookingForm");
+    const whatsappBtn = document.getElementById("whatsappBtn");
+    
+    const nameInput = document.getElementById("name");
+    const childInput = document.getElementById("child");
+    const ageInput = document.getElementById("age");
+    const messageInput = document.getElementById("message");
+
+    // Função para verificar se todos os campos estão preenchidos
+    function checkFormValidity() {
+        const isFilled = nameInput.value.trim() !== "" &&
+                         childInput.value.trim() !== "" &&
+                         ageInput.value.trim() !== "" &&
+                         messageInput.value.trim() !== "";
+
+        if (isFilled) {
+            whatsappBtn.removeAttribute("disabled");
+            whatsappBtn.style.opacity = "1";
+            whatsappBtn.style.cursor = "pointer";
+        } else {
+            whatsappBtn.setAttribute("disabled", "true");
+            whatsappBtn.style.opacity = "0.5";
+            whatsappBtn.style.cursor = "not-allowed";
+        }
+    }
+
+    // Ouve qualquer alteração nos campos do formulário
+    form.addEventListener("input", checkFormValidity);
+
+    // Ação ao clicar no botão do WhatsApp
+    whatsappBtn.addEventListener("click", function (e) {
+        if (whatsappBtn.hasAttribute("disabled")) {
+            e.preventDefault();
+            alert("Por favor, preencha todos os campos antes de continuar.");
+            return;
+        }
+
+        const nome = encodeURIComponent(nameInput.value);
+        const crianca = encodeURIComponent(childInput.value);
+        const idade = encodeURIComponent(ageInput.value);
+        const mensagem = encodeURIComponent(messageInput.value);
+
+        // Monta a mensagem personalizada com os dados do formulário
+        const textoWhatsApp = `Olá! Gostaria de agendar uma visita.%0A%0A*Encarregado:* ${nome}%0A*Criança:* ${crianca}%0A*Idade:* ${idade} anos%0A*Mensagem:* ${mensagem}`;
+
+        const numeroTelefonico = "244956258887"; // Seu número
+        const url = `https://wa.me/${numeroTelefonico}?text=${textoWhatsApp}`;
+
+        // Abre o WhatsApp em uma nova aba
+        window.open(url, "_blank");
+    });
 });
+
+

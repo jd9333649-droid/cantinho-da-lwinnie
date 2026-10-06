@@ -187,14 +187,35 @@
         <div><span class="eyebrow">Vamos conversar?</span><h2>Venha conhecer o <span>Cantinho da Lwinnie.</span></h2><p>Marque uma visita e descubra um espaço onde os baixinhos aprendem, brincam e crescem com carinho.</p>
           <div class="contact-list"><div>📱 <b>WhatsApp:</b> <span id="phoneText">+244 956 258 887</span></div><div>📸 <b>Instagram:</b> @cantinhodalwinnie</div><div>📍 <b>Localização:</b> Viana, Imbondeiro 50, Luanda Sul. </div></div>
         </div>
-        <form id="bookingForm">
-          <h3>Agendar visita</h3>
-          <label>Seu nome<input required id="name" placeholder="Nome do encarregado"></label>
-          <label>Nome da criança<input id="child" placeholder="Nome da criança"></label>
-          <label>Idade<input id="age" type="number" min="0" max="18" placeholder="Idade"></label>
-          <label>Mensagem<textarea id="message" rows="3" placeholder="Dia/horário pretendido..."></textarea></label>
-          <a class="btn" href="https://wa.me/244956258887" target="_blank">💬 Enviar pelo WhatsApp</a>
-        </form>
+      <form id="bookingForm">
+    <h3>Agendar visita</h3>
+    
+    <label>
+        Seu nome
+        <input type="text" id="name" required placeholder="Nome do encarregado">
+    </label>
+    
+    <label>
+        Nome da criança
+        <input type="text" id="child" required placeholder="Nome da criança">
+    </label>
+    
+    <label>
+        Idade
+        <input type="number" id="age" min="0" max="18" required placeholder="Idade">
+    </label>
+    
+    <label>
+        Mensagem
+        <textarea id="message" rows="3" required placeholder="Dia/horário pretendido..."></textarea>
+    </label>
+    
+    <!-- Botão inicialmente desativado/opaco -->
+    <button type="button" id="whatsappBtn" class="btn" disabled style="opacity: 0.5; cursor: not-allowed;">
+        💬 Enviar pelo WhatsApp
+    </button>
+</form>
+
       </div>
     </section>
   </main>
@@ -207,7 +228,7 @@
     </div>
     <div class="copyright">© 2026 Cantinho da Lwinnie. Todos os direitos reservados.</div>
   </footer>
-  <aclass="btn" href="https://wa.me/244956258887" target="_blank" aria-label="Falar no WhatsApp">💬</a>
+  <a class="btn" href="https://wa.me/244956258887" id="wa" href= target = "_blank" aria-label="Falar no WhatsApp">💬</a>
   <script src="script.js"></script>
 </body>
 </html>
